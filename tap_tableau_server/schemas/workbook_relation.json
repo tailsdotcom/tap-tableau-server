@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "wb_id": {
+      "type": "string"
+    },
+    "ds_id": {
+      "type": "string"
+    },
+    "conn_id": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "connection": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "table": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "text": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  },
+  "required": [
+    "connection",
+    "ds_name",
+    "name",
+    "table",
+    "text",
+    "type",
+    "wb_id"
+  ]
+}

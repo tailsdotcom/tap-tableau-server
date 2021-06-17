@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "wb_id": {
+      "type": "string"
+    },
+    "ds_id": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "class_": {
+      "type": "string"
+    },
+    "dbname": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "server": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "username": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "authentication": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "port": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "channel": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "dataserver_permissions": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "directory": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "server_oauth": {
+      "type": "null"
+    },
+    "workgroup_auth_mode": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "query_band": {
+      "type": "null"
+    },
+    "initial_sql": {
+      "type": "null"
+    },
+    "name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "caption": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  },
+  "required": [
+    "authentication",
+    "caption",
+    "channel",
+    "class_",
+    "dataserver_permissions",
+    "dbname",
+    "directory",
+    "ds_name",
+    "initial_sql",
+    "name",
+    "port",
+    "query_band",
+    "server",
+    "server_oauth",
+    "username",
+    "wb_id",
+    "workgroup_auth_mode"
+  ]
+}

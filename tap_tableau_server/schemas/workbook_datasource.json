@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "wb_id": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "caption": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "caption",
+    "name",
+    "version",
+    "wb_id"
+  ]
+}

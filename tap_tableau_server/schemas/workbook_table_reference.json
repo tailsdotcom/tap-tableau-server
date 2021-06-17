@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+      "wb_id": {
+        "type": "string"
+      },
+      "ds_id": {
+        "type": "string"
+      },
+      "conn_id": {
+        "type": "string"
+      },
+      "rel_id": {
+        "type": "string"
+      },
+      "id": {
+        "type": "string"
+      },
+      "ref": {
+        "type": "string"
+      },
+      "updated_at": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "wb_id",
+      "ds_id",
+      "conn_id",
+      "rel_id",
+      "ref",
+      "updated_at"
+    ]
+  }

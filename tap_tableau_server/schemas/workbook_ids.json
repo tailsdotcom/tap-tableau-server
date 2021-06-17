@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "observed_at": {
+      "type": "date-time"
+    },
+    "workbook_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "observed_at",
+    "workbook_ids"
+  ]
+}

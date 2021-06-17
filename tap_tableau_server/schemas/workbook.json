@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "owner_id": {
+      "type": "string"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "project_name": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "content_url": {
+      "type": "string"
+    },
+    "webpage_url": {
+      "type": "string"
+    },
+    "source_platform": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "source_build": {
+      "type": "string"
+    },
+    "worksheets": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "content_url",
+    "created_at",
+    "id",
+    "name",
+    "owner_id",
+    "project_id",
+    "project_name",
+    "size",
+    "source_build",
+    "source_platform",
+    "tags",
+    "updated_at",
+    "webpage_url",
+    "worksheets"
+  ]
+}

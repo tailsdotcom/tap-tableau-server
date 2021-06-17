@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "tap-tableau-server"
+version = "0.0.1"
+description = "`tap-tableau-server` is a Singer tap for TableauServer, built with the Meltano SDK for Singer Taps."
+authors = ["Ken Payne"]
+license = "Apache 2.0"
+
+[tool.poetry.dependencies]
+python = "<3.9,>=3.6"
+requests = "^2.25.1"
+singer-sdk = "^0.2.0"
+tableauserverclient = "^0.15.0"
+tableaudocumentapi = { git = "https://github.com/tailsdotcom/document-api-python.git", branch = "master"}
+sqlfluff = "^0.4.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+# CLI declaration
+tap-tableau-server = 'tap_tableau_server.tap:TapTableauServer.cli'
