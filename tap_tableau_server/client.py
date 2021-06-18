@@ -15,7 +15,7 @@ from .utils import retry
 from .local_workbook import LocalWorkbook
 
 
-logger = logging.getLogger('tableau_wrangler.client')
+logger = logging.getLogger('tap_tableau_server.client')
 tsc_exceptions = (ServerResponseError, InternalServerError)
 
 
@@ -137,3 +137,16 @@ class TableauServerClient(BaseTableauServerClient):
                 logger.warn("Generator exited early. Not all Workbooks were fetched.")
                 lwb.delete_file()
                 return
+
+    def get_workbooks(self, checkpoint, limit=None):
+        # Get filtered list of workbook ids
+        if checkpoint:
+            logger.info(f"Received checkpoint: {checkpoint}")
+        if limit:
+            logger.info(f"Received limit: {limit}")
+        filtered_workbook_ids = self.list_workbook_ids(
+            checkpoint=checkpoint, limit=limit
+        )
+        for lwb in self.iterate_server_workbooks(filtered_workbook_ids):
+            logger.info(f"Fetched Workbook with ID: {lwb.id}")
+            yield lwb

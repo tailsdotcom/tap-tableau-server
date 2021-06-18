@@ -8,12 +8,14 @@ from singer_sdk import typing as th  # JSON schema typing helpers
 from tap_tableau_server.client import TableauServerClient
 from tap_tableau_server.local_workbook_extractor import LocalWorkbookExtractor
 from tap_tableau_server.streams import (
-    Workbook, WorkbookDatasource, WorkbookConnection
+    WorkbookIds, Workbook, WorkbookDatasource, WorkbookConnection,
+    WorkbookRelation, WorkbookTableReference
 )
 
 
 STREAM_TYPES = [
-    Workbook, WorkbookDatasource, WorkbookConnection
+    WorkbookIds, Workbook, WorkbookDatasource, WorkbookConnection,
+    WorkbookRelation, WorkbookTableReference
 ]
 
 
@@ -25,7 +27,9 @@ class TapTableauServer(Tap):
         th.Property("host", th.StringType, required=True),
         th.Property("username", th.StringType, required=True),
         th.Property("password", th.StringType, required=True),
-        th.Property("batch_size", th.IntegerType, default=50)
+        th.Property("limit", th.IntegerType, default=50),
+        th.Property("relation_types_exclude", th.ArrayType(th.StringType)),
+        th.Property("relation_types_exclude", th.ArrayType(th.StringType)),
     ).to_dict()
     # Private Attrs
     _tableau_server_client = None
@@ -53,7 +57,7 @@ class TapTableauServer(Tap):
         """
         if self._wbx is None:
             self._wbx = LocalWorkbookExtractor(
-                relation_types_exclude=self.config.get('relation_types_exclude'),
-                relation_types_include=self.config.get('relation_types_include')
+                relation_types_exclude=self.config.get('relation_types_exclude', []),
+                relation_types_include=self.config.get('relation_types_include', [])
             )
         return self._wbx
