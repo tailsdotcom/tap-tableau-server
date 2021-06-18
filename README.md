@@ -1,12 +1,27 @@
 # tap-tableau-server
 
-`tap-tableau-server` is a Singer tap for TableauServer.
+`tap-tableau-server` is a Singer tap for Tableau Server, focused (currently) on
+extracting details _embedded inside Workbook files_. This includes
+Datasources, Connections and Relations, as well as retrieving
+table references from embedded Custom SQL text fields inside Relation entities.
+
+Extracting the specifics of Datasources, Connections, Relations and Table References
+from each Workbook help answer questions like:
+
+- Which Workbooks depend on which tables in which databases?
+- How many Workbooks depend on Excel, CSV or Google Sheets?
+- Who's credentials are used for embedded connections, in which Workbooks?
+
+Having answers to all of these questions has helped us with wrangling our
+Tableau Server instance, which is several years old and has over 1000 Workbooks.
+
+In future, we hope to extend this tap to cover other metadata that is exposed
+by the Tableau Server API's directly (esp. Published Connections and child objects).
+PR submission very welcome. Watch this space!
 
 Built with the Meltano [SDK](https://gitlab.com/meltano/singer-sdk) for Singer Taps.
 
 ## Installation
-
-- [ ] `Developer TODO:` Update the below as needed to correctly describe the install procedure. For instance, if you do not have a PyPi repo, or if you want users to directly install from your git repo, you can modify this step as appropriate.
 
 ```bash
 pipx install tap-tableau-server
@@ -16,7 +31,22 @@ pipx install tap-tableau-server
 
 ### Accepted Config Options
 
-- [ ] `Developer TODO:` Provide a list of config options accepted by the tap.
+```
+{
+  "host": "<tableau server hostname>",
+  "username": "<tableau server username>",
+  "password": "<tableau server user password>",
+  "limit": "<max number of workbooks to fetch per run>",
+  "relation_types_exclude": ["<list of tableau workbook relation types to exclude>"],
+  "relation_types_include": ["<list of tableau workbook relation types to include>"]
+}
+```
+
+**Note:** The `limit` configuration is useful for large Tableau Server instances
+where the number of workbooks to download may be in the 1000's. Setting a limit
+on the number of workbooks retrieved per run effectively allows you to backfill
+in fixed increments over several successive tap runs, reducing the load on your
+server and minimising impact to other users.
 
 A full list of supported settings and capabilities for this
 tap is available by running:
@@ -27,7 +57,9 @@ tap-tableau-server --about
 
 ### Source Authentication and Authorization
 
-- [ ] `Developer TODO:` If your tap requires special access on the source system, or any special authentication requirements, provide those here.
+Only workbooks accessible to the user configured above can be extracted. Consider
+creating a user with the broadest possible access to ensure you collect details
+from all available Workbooks.
 
 ## Usage
 
@@ -42,8 +74,6 @@ tap-tableau-server --config CONFIG --discover > ./catalog.json
 ```
 
 ## Developer Resources
-
-- [ ] `Developer TODO:` As a first step, scan the entire project for the text "`TODO:`" and complete any recommended steps, deleting the "TODO" references once completed.
 
 ### Initialize your Development Environment
 
@@ -96,5 +126,5 @@ meltano elt tap-tableau-server target-jsonl
 
 ### SDK Dev Guide
 
-See the [dev guide](https://gitlab.com/meltano/singer-sdk/-/blob/main/docs/dev_guide.md) for more instructions on how to use the SDK to 
+See the [dev guide](https://gitlab.com/meltano/singer-sdk/-/blob/main/docs/dev_guide.md) for more instructions on how to use the SDK to
 develop your own taps and targets.

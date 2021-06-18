@@ -27,7 +27,7 @@ class TapTableauServer(Tap):
         th.Property("host", th.StringType, required=True),
         th.Property("username", th.StringType, required=True),
         th.Property("password", th.StringType, required=True),
-        th.Property("limit", th.IntegerType, default=50),
+        th.Property("limit", th.IntegerType),
         th.Property("relation_types_exclude", th.ArrayType(th.StringType)),
         th.Property("relation_types_exclude", th.ArrayType(th.StringType)),
     ).to_dict()
