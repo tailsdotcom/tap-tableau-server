@@ -128,8 +128,9 @@ class WorkbookRelation(Stream):
             relation=context['relation']
         )
         # One Relation block can contain many Relations
-        for record in relations:
-            yield (record, record)
+        if relations:
+            for record in relations:
+                yield (record, record)
 
 
 class WorkbookTableReference(Stream):
