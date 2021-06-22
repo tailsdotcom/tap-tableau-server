@@ -31,14 +31,18 @@ class TableauServerClient(BaseTableauServerClient):
     """ A wrapper around the `tableauserverclient` library.
     """
 
-    def __init__(self, host, username, password):
+    def __init__(self, host, username, password, site_id=None):
         self._host = host
         self._username = username
         self._password = password
+        self._site_id = site_id or ''
 
     @property
     def authentication(self):
-        return tsc.TableauAuth(self._username, self._password)
+        return tsc.TableauAuth(
+            self._username, self._password,
+            site_id=self._site_id
+        )
 
     @property
     def server(self):
