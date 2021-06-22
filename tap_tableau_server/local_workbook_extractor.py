@@ -1,4 +1,3 @@
-import uuid
 import logging
 import sqlfluff
 import collections
@@ -211,8 +210,8 @@ class LocalWorkbookExtractor:
                                 'ds_id': relation['ds_id'],
                                 'conn_id': relation['conn_id'],
                                 'rel_id': relation['id'],
-                                'id': f"{relation['wb_id']}:{relation['ds_id']}:{relation['conn_id']}:{relation['id']}:{uuid.uuid4()}",
-                                'ref': ref,
+                                'id': f"{relation['wb_id']}:{relation['ds_id']}:{relation['conn_id']}:{relation['id']}:{ref.lower()}",
+                                'ref': ref.lower(),
                                 'updated_at': relation['updated_at']
                             })
                         )
